@@ -8,7 +8,7 @@
 - 默认输出语言：中文。
 - 官方主流程保持为：`explore -> propose -> apply -> archive`。
 - 如项目需要，可增加项目级 `review` 阶段：`apply -> 自动 review -> 等待确认 -> archive`。
-- `changes/` 用于活跃变更，`archive/` 仅保存历史。
+- `openspec/changes/` 用于活跃变更，`openspec/changes/archive/` 仅保存历史。
 
 ## 2. 哪些场景必须走 OpenSpec
 
