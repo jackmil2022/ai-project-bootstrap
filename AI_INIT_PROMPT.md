@@ -11,6 +11,9 @@
 - 生命周期主线使用 `onboard / analyze -> propose -> design -> spec -> tasks -> apply -> review -> archive`
 - 生命周期文档内容统一使用中文，便于理解、讨论、维护和交接
 - `AGENTS.md` 是项目知识沉淀的主入口，也是长期规则的唯一主仓
+- 初始化 OpenSpec 时，优先使用 OpenSpec 官方 CLI 命令，不要手工伪造初始化结果替代官方初始化
+- 先自主判断当前用户使用的编辑工具；只有在无法可靠判断时，才询问用户，避免创建很多无用文件
+- 安装 Superpowers、everything-claude-code 等外部工具时，优先依赖 GitHub 官方文档提供的安装命令，不要自己新建、复制或伪造安装产物
 - 在落文档前、落文档后、归档前，必须暂停并向用户说明变更点、方案、风险和下一步，等待用户确认
 - `apply` 阶段的写代码方式以 Superpowers 的工作方式为主
 - 代码完成后，必须按 everything-claude-code 的审查方式进行严格 review
@@ -54,6 +57,7 @@
 执行规则：
 
 - 如果根目录没有 `AGENTS.md`，先创建
+- 每个包、应用、服务、库，以及职责边界清晰的模块目录，都应有自己的 `AGENTS.md`
 - 如果已有 `AGENTS.md`，以最小化合并方式补充，不覆盖用户已有内容
 - 如果其他文档中已经存在长期稳定的项目规则、模块边界、命令约定、维护注意事项，要搬运或合并到对应层级的 `AGENTS.md`
 - 根级 `AGENTS.md` 负责全局规则
@@ -80,6 +84,11 @@
 
 桥接原则：
 
+- 优先根据仓库线索、目录结构、已有桥接文件、命令痕迹和用户上下文自主判断当前编辑工具
+- 如果使用 OpenSpec CLI，优先把 `openspec init` 对现有工具目录的自动探测结果作为判断依据之一
+- 如果能可靠判断，只创建当前工具真正需要的桥接文件
+- 如果不能可靠判断，再用一个简短问题向用户确认，不要默认把所有工具桥接文件都创建出来
+- 避免为了“兼容万一会用到的工具”而一次性创建很多不需要的文件
 - 首选主入口始终是对应层级的 `AGENTS.md`
 - 如果工具支持自己的桥接文件，例如 `CLAUDE.md` 或 `.cursor/rules/ai-workflow.mdc`，这些文件应保持轻量，主要负责索引回 `AGENTS.md`
 - 如果某个工具不直接支持 `AGENTS.md`，则保留该工具支持的文档格式，同时在 `AGENTS.md` 中建立索引关系，并在桥接文件中明确说明：
@@ -95,6 +104,8 @@
 
 ```text
 AGENTS.md
+apps/<app>/AGENTS.md                 # 每个包/应用/服务/模块都应有
+packages/<pkg>/AGENTS.md            # 目录名按项目实际结构调整
 CLAUDE.md                            # 如适用，作为桥接文件
 .cursor/
 └── rules/
@@ -107,16 +118,14 @@ CLAUDE.md                            # 如适用，作为桥接文件
 │   └── specs/
 ├── skills/
 │   ├── README.md
-│   ├── using-project-skills/SKILL.md
-│   ├── brainstorming/SKILL.md
-│   ├── writing-plans/SKILL.md
-│   ├── test-driven-development/SKILL.md
-│   ├── requesting-code-review/SKILL.md
-│   ├── receiving-code-review/SKILL.md
-│   ├── systematic-debugging/SKILL.md
-│   ├── verification-before-completion/SKILL.md
-│   ├── subagent-driven-development/SKILL.md
-│   └── dispatching-parallel-agents/SKILL.md
+│   └── Superpowers/
+│       ├── brainstorming/SKILL.md
+│       ├── writing-plans/SKILL.md
+│       ├── test-driven-development/SKILL.md
+│       ├── systematic-debugging/SKILL.md
+│       ├── verification-before-completion/SKILL.md
+│       ├── subagent-driven-development/SKILL.md
+│       └── dispatching-parallel-agents/SKILL.md
 └── openspec/
     ├── README.md
     ├── templates/
@@ -132,8 +141,10 @@ CLAUDE.md                            # 如适用，作为桥接文件
 约定说明：
 
 - `AGENTS.md` 是共享主入口
+- 每个包都应该有自己的 `AGENTS.md`，用于沉淀本地边界、命令和维护约束
 - `.ai/openspec/` 放中文版、轻量化、本地化的 OpenSpec 工作流
-- `.ai/skills/` 放以 Superpowers 思想为主的本地 skills
+- `.ai/skills/` 按能力来源分组，目录名尽量保留原始来源名，例如 `Superpowers`
+- skills 的能力名尽量保留来源中的原始名字，不随意另起中文别名作为目录名
 - `.ai/docs/specs/` 放设计、方案、规格等项目文档
 - `CLAUDE.md`、`.cursor/rules/ai-workflow.mdc` 等文件只作为桥接入口，不重复维护主规则
 
@@ -149,6 +160,10 @@ CLAUDE.md                            # 如适用，作为桥接文件
 
 必须完成：
 
+- 检查当前环境是否已安装或可调用 OpenSpec CLI
+- 如果可用，规划使用 OpenSpec 官方命令初始化，而不是手工先搭目录
+- 优先识别当前用户实际使用的编辑工具，并据此决定是否需要 `CLAUDE.md`、`.cursor/rules/`、`.github/copilot-instructions.md` 等桥接文件
+- 如果编辑工具判断不明确，先提出一个简短确认问题，再决定创建哪些桥接文件
 - 扫描项目结构、语言、框架、包管理器、构建方式、测试方式
 - 判断是否是 monorepo，并识别 apps / packages / services / libs / modules
 - 检查现有 AI 入口和桥接文件
@@ -162,6 +177,7 @@ CLAUDE.md                            # 如适用，作为桥接文件
 - 技术栈
 - monorepo 判断
 - 当前检测到的编码工具线索
+- 当前推断的主要编辑工具
 - 现有 AI 配置
 - 现有文档结构
 - 建议新增
@@ -170,9 +186,55 @@ CLAUDE.md                            # 如适用，作为桥接文件
 - 潜在冲突
 - 计划创建的 skills
 - 计划创建的 OpenSpec 中文文件
+- OpenSpec CLI 是否可用，以及准备使用哪些官方命令
 - `AGENTS.md` / 桥接文件处理策略
 
 在用户明确确认之前，不要创建、修改或删除任何文件。
+
+### OpenSpec 初始化命令要求
+
+初始化 OpenSpec 时，按以下优先级执行：
+
+1. 先检查 `openspec` CLI 是否可用
+2. 如果可用，必须优先使用 OpenSpec 官方命令初始化，通常是 `openspec init`
+3. 如需为特定工具生成集成，优先使用 OpenSpec 官方 `--tools` 选项，例如根据检测结果选择 `codex`、`cursor`、`claude`
+4. 如果 OpenSpec 升级后需要刷新指令文件，优先使用 `openspec update`
+5. 只有在 OpenSpec CLI 不可用、当前环境无法安装、或用户明确要求手工模式时，才允许手工创建结构
+6. 如果必须手工创建，先明确说明原因、缺失了哪些官方能力、以及哪些部分将以兼容方式补齐
+
+不要在 CLI 可用时跳过 `openspec init` 直接手工搭建 `openspec/` 目录。
+
+## 外部工具安装要求
+
+当任务涉及安装或接入外部工具时，必须优先使用上游 GitHub 仓库文档提供的官方命令或官方安装方式。
+
+总原则：
+
+1. 优先使用官方安装命令
+2. 优先使用插件机制、官方 CLI、官方 marketplace、官方 installer
+3. 不要通过“手工复制仓库内容到项目里”来伪装安装已经完成
+4. 不要自己新建外部工具的命令、agent、skill、hook 或插件产物来冒充官方安装
+5. 如果当前工具不支持该上游工具的官方安装方式，要明确说明“不适用”，而不是假装已经安装成功
+
+已知示例：
+
+- OpenSpec：
+  - 官方 CLI 安装可参考 `npm install -g @fission-ai/openspec@latest`
+  - 项目初始化优先使用 `openspec init`
+- Superpowers（Claude Code 官方插件方式）：
+  - `/plugin marketplace add obra/superpowers-marketplace`
+  - `/plugin install superpowers@superpowers-marketplace`
+- Superpowers（Codex 官方安装指引）：
+  - 让 Codex 获取并执行上游提供的安装说明：`Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md`
+- everything-claude-code（Claude Code 官方插件方式）：
+  - `/plugin marketplace add affaan-m/everything-claude-code`
+  - `/plugin install everything-claude-code@everything-claude-code`
+
+如果不是在 Claude Code 环境中，不要假装完成了 Superpowers 或 everything-claude-code 的官方安装。此时可以：
+
+- 参考其方法论来设计本项目的本地流程
+- 在 `.ai/skills/` 中创建“受其启发的项目内 skills”
+- 但不要声称“已经安装了上游工具”
 
 ### 门禁 1：落文档前必须停下来确认
 
@@ -227,7 +289,6 @@ CLAUDE.md                            # 如适用，作为桥接文件
 
 在本项目中，建议优先建设或使用以下本地 skills：
 
-- `using-project-skills`
 - `brainstorming`
 - `writing-plans`
 - `test-driven-development`
@@ -319,18 +380,20 @@ review 原则：
 
 为了让 `apply` 与 `review` 阶段稳定落地，建议把以下 skills 统一放在 `.ai/skills/`：
 
-- `using-project-skills`
-- `brainstorming`
-- `writing-plans`
-- `test-driven-development`
-- `requesting-code-review`
-- `receiving-code-review`
-- `systematic-debugging`
-- `verification-before-completion`
-- `subagent-driven-development`
-- `dispatching-parallel-agents`
+- `Superpowers/brainstorming`
+- `Superpowers/writing-plans`
+- `Superpowers/test-driven-development`
+- `Superpowers/systematic-debugging`
+- `Superpowers/verification-before-completion`
+- `Superpowers/subagent-driven-development`
+- `Superpowers/dispatching-parallel-agents`
 
-这些 skills 应以中文书写，保持轻量，但方法论以 Superpowers 为主。
+这些 skills 应按来源分组放在 `.ai/skills/` 下，并尽量保留来源中的原始能力名。
+
+如果后续引入其他来源的 skills，也按同样方式分组，例如：
+
+- `.ai/skills/Superpowers/...`
+- `.ai/skills/SomeOtherSource/...`
 
 ## 建议创建的 OpenSpec 中文文件
 
@@ -361,6 +424,9 @@ review 原则：
 - 技术栈：
 - monorepo：
 - 当前检测到的编码工具：
+- 当前推断的主要编辑工具：
+- OpenSpec CLI 可用性：
+- 计划使用的 OpenSpec 官方命令：
 - 现有 AI 配置：
 - 现有文档结构：
 - `AGENTS.md` 处理策略：

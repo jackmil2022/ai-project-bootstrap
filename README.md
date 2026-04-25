@@ -6,6 +6,9 @@
 
 - 这个仓库的核心不是代码模板，而是一套“把任意项目初始化成 AI 可长期协作工作区”的提示词
 - 这套提示词以 OpenSpec 生命周期为骨架
+- 初始化 OpenSpec 时，优先要求 AI 使用 OpenSpec 官方命令，而不是手工伪造初始化结构
+- AI 应先自主判断你当前使用的编辑工具；只有判断不出来时，才询问你，避免创建很多无用文件
+- 安装 Superpowers 等外部工具时，应优先使用其 GitHub 官方提供的安装命令，而不是手工新建或伪造安装内容
 - 写代码阶段以 Superpowers 的方法论为主
 - 代码完成后的 review 以 everything-claude-code 的审查方式为主
 - 项目的长期知识主仓是 `AGENTS.md`
@@ -39,9 +42,9 @@
 
 初始化完成后，项目通常会形成这些关键部分：
 
-- `AGENTS.md`：项目知识主仓，记录长期有效的规则、边界和维护约定
+- `AGENTS.md`：项目知识主仓；根目录要有，且每个包、应用、服务或边界清晰的模块目录也应有自己的 `AGENTS.md`
 - `.ai/openspec/`：中文版、轻量化、本地化的 OpenSpec 生命周期文档
-- `.ai/skills/`：以 Superpowers 思想为主的本地 skills
+- `.ai/skills/`：本地 skills 目录，按来源分组并保留原始能力名，例如 `.ai/skills/Superpowers/brainstorming/SKILL.md`
 - `CLAUDE.md`、`.cursor/rules/ai-workflow.mdc` 等桥接文件：如适用，用来兼容具体工具，但不作为主知识库
 
 ## 文件说明
