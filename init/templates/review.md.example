@@ -1,0 +1,24 @@
+## Review Scope（范围）
+
+<!-- 用中文说明本次 review 覆盖了哪些实现、哪些规格和哪些验证结果。 -->
+
+## 已完成验证
+
+- [ ] 单元测试
+- [ ] 集成验证
+- [ ] 人工关键路径检查
+- [ ] 文档 / 配置 / 迁移同步检查
+
+## Findings / Risks（发现 / 风险）
+
+- <若无发现，明确写“无阻塞性发现”。>
+
+## Conclusion（结论）
+
+- 结论：`passed` / `changes_requested`
+- 是否允许进入 archive：`yes` / `no`
+- 用户是否已确认进入 archive：`pending` / `confirmed`
+
+## Follow-ups（后续动作）
+
+- <若需要回到 apply，这里写清楚要补什么；若 review 已通过但尚未确认 archive，也在这里标记等待确认。>

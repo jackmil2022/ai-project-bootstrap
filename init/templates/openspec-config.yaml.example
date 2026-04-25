@@ -1,0 +1,47 @@
+schema: spec-driven
+
+context: |
+  项目名称：<项目名>
+  项目类型：<Web / API / CLI / Python自动化 / 数据处理 / 桌面工具 / 其他>
+  默认输出语言：中文
+  技术栈：<例如 Python 3.11 + FastAPI + PostgreSQL>
+  主入口或主流程：<例如 src/main.py、app/__init__.py、server/index.ts>
+  关键目录职责：
+    - <目录 1>：<职责>
+    - <目录 2>：<职责>
+  复用优先入口：
+    - <已有封装 1>
+    - <已有封装 2>
+  长期边界：
+    - 先复用现有封装，再新增实现
+    - 影响主流程的改动必须先明确兼容约束
+    - 输入边界必须显式校验
+    - 异常处理不能静默吞错
+  验证要求：
+    - 纯逻辑优先补单元测试
+    - 跨模块改动至少做集成验证
+    - 高风险用户流需要补端到端或人工验证
+
+rules:
+  proposal:
+    - 先讲清 why、what、impact，不把实现细节塞进 proposal
+    - 变更范围、受影响模块、主要风险必须可读
+  specs:
+    - requirement 必须描述行为，不写实现细节
+    - 只有行为变化时才修改已有 capability
+    - 每个 requirement 都要能映射到可验证场景
+  design:
+    - 涉及主流程、跨模块、外部依赖、迁移、安全、性能时必须补 design
+    - design 重点讲决策和权衡，不写逐行实现
+  tasks:
+    - 任务按依赖顺序拆分
+    - 单项任务应能在一次会话内完成
+    - tasks 要能直接驱动 apply
+  apply:
+    - 实现前先确认 proposal、specs、design、tasks 与当前理解一致
+    - 实现完成后自动进入 review
+    - review 完成后先停止并等待用户确认，再决定是否 archive
+    - 修改应尽量最小化，避免顺手大重构
+  archive:
+    - archive 前先确认 specs 与实际代码状态一致
+    - archive 前先沉淀长期有效规则到合适文档
