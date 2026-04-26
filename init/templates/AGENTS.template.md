@@ -8,11 +8,13 @@
 ## 1. OpenSpec 默认规则
 
 - 涉及功能新增、功能修改、主流程调整、接口或数据结构变化、较大修复时，默认先走 OpenSpec。
+- 涉及设计方案调整、行为变化或代码改动时，默认也必须先走 OpenSpec，不要绕过 `explore / propose` 直接改实现。
 - 默认遵循官方 OpenSpec 主流程：`explore -> propose -> apply -> archive`。
 - 如果项目需要更高治理，可以在 `apply` 和 `archive` 之间增加项目级 `review`，但不要伪装成新的官方命令。
 - 建议规则是：`apply` 完成后自动进入 `review`，`review` 完成后停止并等待用户确认，再进入 `archive`。
 - `openspec/changes/` 用于活跃 change，`openspec/changes/archive/` 仅作历史保留。
 - proposal、design、specs、tasks 应与代码状态保持同步，避免长期漂移。
+- 进入 coding / apply 阶段后，显式使用 `superpowers:test-driven-development`、`superpowers:requesting-code-review`、`superpowers:verification-before-completion`。
 
 ## 2. 确认闸门（可选增强）
 

@@ -39,6 +39,9 @@ rules:
     - tasks 要能直接驱动 apply
   apply:
     - 实现前先确认 proposal、specs、design、tasks 与当前理解一致
+    - coding 阶段显式使用 `superpowers:test-driven-development`
+    - 任务之间或阶段性完成后显式使用 `superpowers:requesting-code-review`
+    - 在宣称完成前显式使用 `superpowers:verification-before-completion`
     - 实现完成后自动进入 review
     - review 完成后先停止并等待用户确认，再决定是否 archive
     - 修改应尽量最小化，避免顺手大重构

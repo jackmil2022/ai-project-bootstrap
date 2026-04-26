@@ -17,6 +17,8 @@
 - 主流程调整
 - 接口或数据结构变化
 - 较大修复
+- 设计方案调整
+- 代码改动
 - 会影响对外行为的改动
 
 仅注释、说明文档、`AGENTS.md` 等不影响行为的少量文字调整，可按项目规则决定是否跳过。
@@ -47,6 +49,12 @@
 ## 5. review 阶段
 
 如果项目采用高治理模式，则在 `apply` 完成后自动进入独立 review。
+
+进入 coding / apply 阶段后，显式使用这些技能：
+
+- `superpowers:test-driven-development`
+- `superpowers:requesting-code-review`
+- `superpowers:verification-before-completion`
 
 review 至少确认：
 

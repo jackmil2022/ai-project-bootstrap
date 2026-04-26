@@ -47,11 +47,18 @@ openspec init --tools codex
 ## 推荐原则
 
 - 官方结构保持不变：继续使用官方 `openspec/` 目录和官方 `explore / propose / apply / archive` 分类。
-- 项目补充规则分层承载：全局规则放根 `AGENTS.md`，包内规则放各包自己的 `AGENTS.md`，流程与上下文放 `openspec/config.yaml`、`openspec/CODEX_MANUAL.md`。
+- 初始化生成的目标项目里，项目补充规则分层承载：全局规则放根 `AGENTS.md`，包内规则放各包自己的 `AGENTS.md`，流程与上下文放 `openspec/config.yaml`、`openspec/CODEX_MANUAL.md`。
+- 初始化生成的目标项目里，任何设计改动、行为改动或代码改动，都应先走 OpenSpec，再进入实现。
 - `review` 作为项目治理补充阶段存在，不伪装成新的官方命令。
 - `apply` 完成后自动进入 `review`，`review` 完成后停止并等待用户确认，再决定是否进入 `archive`。
+- 初始化生成的目标项目里，coding / apply 阶段显式使用 `superpowers:test-driven-development`、`superpowers:requesting-code-review`、`superpowers:verification-before-completion`。
 - 如果目标项目不需要中文，只需要把模板里的语言约束改掉，其余结构仍可复用。
 - 包级目录默认都应有自己的 `AGENTS.md`，不要只靠根规则兜底。
+
+## 推荐配套技能
+
+- 如果目标环境支持插件或技能，建议安装 [Superpowers](https://github.com/obra/superpowers)。
+- 在 OpenSpec 的 coding / apply 阶段，显式使用 `superpowers:test-driven-development`、`superpowers:requesting-code-review`、`superpowers:verification-before-completion`。
 
 ## 参考入口
 
