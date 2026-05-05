@@ -26,7 +26,7 @@ openspec init --tools codex
 
 ## 步骤 3：补项目上下文
 
-把 `templates/openspec-config.yaml.example` 合并到目标项目的 `openspec/config.yaml`，至少补齐这些内容：
+把 `assets/templates/openspec-config.yaml.example` 合并到目标项目的 `openspec/config.yaml`，至少补齐这些内容：
 
 - 项目类型
 - 技术栈
@@ -40,7 +40,7 @@ openspec init --tools codex
 
 ## 步骤 4：补根级长期规则
 
-把 `templates/AGENTS.template.md` 合并到目标项目根 `AGENTS.md`。建议只保留长期有效规则，例如：
+把 `assets/templates/AGENTS.template.md` 合并到目标项目根 `AGENTS.md`。建议只保留长期有效规则，例如：
 
 - 哪些场景必须走 OpenSpec
 - 哪些设计改动或代码改动一律不能绕过 OpenSpec
@@ -63,7 +63,7 @@ openspec init --tools codex
 - 本目录特有的命名、测试、异常处理规则
 - 哪些规则要比根目录更严格
 
-建议直接基于 `templates/PACKAGE_AGENTS.template.md` 为每个包生成一份。
+建议直接基于 `assets/templates/PACKAGE_AGENTS.template.md` 为每个包生成一份。
 
 推荐优先覆盖这些目录：
 
@@ -80,7 +80,7 @@ openspec init --tools codex
 
 - `openspec/CODEX_MANUAL.md`
 
-建议直接基于 `templates/CODEX_MANUAL.template.md` 改。
+建议直接基于 `assets/templates/CODEX_MANUAL.template.md` 改。
 
 即使项目很轻量，也建议至少保留“根 `AGENTS.md` + 包级 `AGENTS.md`”；是否需要单独手册再按治理强度决定。
 
@@ -102,7 +102,7 @@ openspec init --tools codex
 
 ## 步骤 8：按阶段使用提示词
 
-后续日常协作时，直接使用 `prompts/` 目录里的提示词：
+后续日常协作时，直接使用 `assets/prompts/` 目录里的提示词：
 
 - 初始化类
 - 探索与提案类

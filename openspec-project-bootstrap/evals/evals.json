@@ -1,0 +1,23 @@
+{
+  "skill_name": "openspec-project-bootstrap",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "给这个还没有 OpenSpec 的 Python API 仓库做官方初始化，并补齐根 AGENTS、包级 AGENTS 和 openspec/config.yaml。",
+      "expected_output": "保留官方 OpenSpec 目录结构，补齐项目上下文、治理规则和目录级 AGENTS 方案。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "这个项目已经有 openspec/ 目录，但 apply 做完就直接 archive 了。请改成 apply 后自动 review、review 后等待确认。",
+      "expected_output": "在不破坏官方结构的前提下，新增项目级 review 治理规则并明确确认闸门。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "把这个前后端 monorepo 整理成一个可长期复用的 OpenSpec 初始化模板，重点补每个关键包自己的 AGENTS.md。",
+      "expected_output": "输出适合 monorepo 的根规则、包级规则分层和推荐提示词使用方式。",
+      "files": []
+    }
+  ]
+}

@@ -1,6 +1,8 @@
-# OpenSpec 通用初始化包
+# OpenSpec 项目初始化 Skill
 
-这个仓库的目标，不是替代官方 OpenSpec，而是把“本项目已经跑顺的规则”整理成一套可移植的初始化包，方便你在任意类型项目里复用，同时仍然坚持官方 OpenSpec 的落地方式。
+这个仓库现在承载的是一个可复用的 skill：`openspec-project-bootstrap/`。
+
+它的目标不是替代官方 OpenSpec，而是把“先保留官方结构，再叠加项目治理规则”的做法整理成一套可安装、可复用的技能资源，方便你在任意类型项目里复用。
 
 ## 这套包解决什么问题
 
@@ -29,20 +31,21 @@ openspec init --tools codex
 
 这说明“官方方式”的核心，是保留官方目录和官方四阶段技能分类，而不是先发明一套自定义工作流。
 
-## 这套包怎么用
+## 这个 skill 怎么用
 
-1. 在目标项目里先执行官方初始化。
-2. 对照 `init/01-官方基线与项目差异.md`，决定哪些规则要继承。
-3. 按 `init/02-任意项目初始化步骤.md` 完成项目落地。
-4. 把 `init/templates/` 下的模板拷入目标项目，再按项目实际情况替换占位符。
-5. 按 `init/prompts/` 下的分类提示词驱动后续 `explore / propose / apply / review / archive`。
+1. 使用 [`openspec-project-bootstrap/SKILL.md`](./openspec-project-bootstrap/SKILL.md) 作为技能入口。
+2. 对照 `openspec-project-bootstrap/references/official-baseline-vs-project-rules.md`，判断要保留哪些官方基线、追加哪些治理规则。
+3. 按 `openspec-project-bootstrap/references/bootstrap-any-project.md` 在目标项目落地。
+4. 把 `openspec-project-bootstrap/assets/templates/` 下的模板拷入目标项目，再按项目实际情况替换占位符。
+5. 按 `openspec-project-bootstrap/assets/prompts/` 下的分类提示词驱动后续 `explore / propose / apply / review / archive`。
 
 ## 目录说明
 
-- `init/01-官方基线与项目差异.md`：官方 OpenSpec 与本项目规则对照表。
-- `init/02-任意项目初始化步骤.md`：任意项目的落地步骤。
-- `init/templates/`：可复制到目标项目的根级与包级模板。
-- `init/prompts/`：按阶段分类的提示词。
+- `openspec-project-bootstrap/SKILL.md`：skill 入口与执行说明。
+- `openspec-project-bootstrap/references/`：官方基线对照与初始化步骤。
+- `openspec-project-bootstrap/assets/templates/`：可复制到目标项目的根级与包级模板。
+- `openspec-project-bootstrap/assets/prompts/`：按阶段分类的提示词。
+- `openspec-project-bootstrap/evals/evals.json`：最小测试提示词集合。
 
 ## 推荐原则
 
